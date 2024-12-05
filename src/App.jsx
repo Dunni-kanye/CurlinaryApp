@@ -1,26 +1,15 @@
+import React, { useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ROUTES from "./route/router";
 
-//import './App.css'
-import Header from './components/Header'
-import Footer from './components/Footer'
-function App() {
-  
 
-  return (
+const router = createBrowserRouter([...ROUTES])
+const App = () => {
+  return(
     <>
-    <div>
-      <Header/>
-      <Footer/>
-      {/* <HomePage/>
-      
-      
-      {/* <Login/> */}
-
-
-     
-
-    </div>
+      <RouterProvider router={router}/>
     </>
   )
-}
+};
 
-export default App
+export default App;

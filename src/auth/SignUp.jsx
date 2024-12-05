@@ -1,80 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import style from "../styles/signup.module.css";
-// import CustomButton from "../reuseables/CustomButton";
-import { Link, useNavigate } from "react-router-dom";
 
-const SignUp = () => {
-
-    const navigate = useNavigate();
-
-    const userDetails = {
-        username: "",
-        email:"",
-        password:"",
-    };
-    const [data, setData] = useState(userDetails)
-
-    function handleChange(event){
-        console.log(event)
-        const {name, value}= event.target
-        // setData((prevData)=>({...prevData, [name]:value}));
-        setData((prevData)=>{
-          return {...prevData,[name]:value}
-        })
-
-    };
-
-    const handleSubmit = ()=>{
-      console.log("Submitted.......");
-      // setTimeout(()=>{ 
-        navigate("/login")
-      // },3000)
-    }
-
-    console.log(data)
-
+const Signup = () => {
   return (
-    <div>
-      <form onSubmit ={handleSubmit}action="">
-        <div>
-          <input
-            type="text"
-            name="username"
-            placeholder="Enter Username"
-            className={style.input}   
-            onChange={handleChange}
-            // value={data.username}
-            required
-          />
+    <div className={style.container}>
+      <h1>Sign Up</h1>
+      <form className={style.form}>
+        <div className={style.formGroup}>
+          <label htmlFor="name" className={style.label}>
+            Name:
+          </label>
+          <input type="text" id="name" placeholder="Enter your name" className={style.input} />
         </div>
-        <div>
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your Email"
-            className={style.input}
-            onChange={handleChange}
-            required
-          />
+        <div className={style.formGroup}>
+          <label htmlFor="email" className={style.label}>
+            Email:
+          </label>
+          <input type="email" id="email" placeholder="Enter your email" className={style.input} />
         </div>
-        <div>
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter Password"
-            className={style.input}
-            onChange={handleChange}
-            required
-          />
+        <div className={style.formGroup}>
+          <label htmlFor="password" className={style.label}>
+            Password:
+          </label>
+          <input type="password" id="password" placeholder="Enter your password" className={style.input} />
         </div>
-        <CustomButton style = {style.btn} type = "submit" textContent= "submit"/>
+        <button type="submit" className={style.button}>
+          Sign Up
+        </button>
       </form>
-      <div>
-        <span>Already have an acoount?</span>
-        <span><Link to={"/login"}>Login</Link></span>
-      </div>
+      <p>
+        Already have an account? <Link to="/login" className={style.link}>Log In</Link>
+      </p>
     </div>
   );
 };
 
-export default SignUp;
+export default Signup;

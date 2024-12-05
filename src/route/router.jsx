@@ -1,5 +1,6 @@
 import Login from "../auth/login";
-import SignUp from "../auth/SignUp";
+import Signup from "../auth/Signup";
+import Header from "../components/Header";
 
 
 
@@ -8,7 +9,7 @@ import SignUp from "../auth/SignUp";
 const ROUTES = [
     {
         path: "/signup",
-        element:<SignUp/>
+        element:<Signup/>
     },
    
     {
@@ -16,7 +17,12 @@ const ROUTES = [
         element:<Login/>
     },
     {
-        
+        path: "/home",
+        element: <Header/>
+    },
+    {
+        path: "/",
+        element: <Header/> 
     }
    
 
