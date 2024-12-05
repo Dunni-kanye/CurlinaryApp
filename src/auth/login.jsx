@@ -1,61 +1,69 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styles from '../styles/login.module.css';
 
-import React, { useState } from "react";
-import CustomButton from "../reuseables/CustomButton";
-import style from "../styles/login.module.css";
-import { Link } from "react-router-dom";
+const Login = () => {
+  const [userDetails, setUserDetails] = useState({
+    email: '',
+    password: '',
+  });
 
-const Login = () =>{
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUserDetails((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-    
-    const userDetails = {
-        username: "",
-        password:"",
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Login attempted with:', userDetails);
+  };
 
-    const [data, setData] = useState(userDetails)
-
-    function handleChange(event){
-        console.log(event)
-        const {name, value}= event.target
-        // setData((prevData)=>({...prevData, [name]:value}));
-        setData((prevData)=>{
-          return {...prevData,[name]:value}
-        })
-
-    }
-
-    return(
-        <div>
-      <form action="">
-        <div>
+  return (
+    <div className={styles.container}>
+      <h1>Log In</h1>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.formGroup}>
+          <label htmlFor="email" className={styles.label}>
+            Email:
+          </label>
           <input
-            type="text"
-            name="username"
-            placeholder="Enter Username"
-            className={style.input}   
+            type="email"
+            id="email"
+            name="email"
+            value={userDetails.email}
             onChange={handleChange}
-            // value={data.username}
+            placeholder="Enter your email"
+            className={styles.input}
             required
           />
         </div>
-        <div>
+        <div className={styles.formGroup}>
+          <label htmlFor="password" className={styles.label}>
+            Password:
+          </label>
           <input
             type="password"
+            id="password"
             name="password"
-            placeholder="Enter Password"
-            className={style.input}
+            value={userDetails.password}
             onChange={handleChange}
+            placeholder="Enter your password"
+            className={styles.input}
             required
           />
         </div>
-        <Link to = {"/movie/popular"}> <CustomButton style = {style.btn} type = "Login" textContent= "login"/></Link>
-       
+        <button type="submit" className={styles.button}>
+          Log In
+        </button>
       </form>
-      <div>
-        <span className  = {style.mine}> Don't have an Account</span>
-        <span><Link to={"/signup"}>SignUp</Link></span>
-      </div>
+      <p>
+        Don't have an account? <Link to="/signup" className={styles.link}>Sign Up</Link>
+      </p>
     </div>
-    )
-}
+  );
+};
+
 export default Login;
